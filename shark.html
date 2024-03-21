@@ -16,16 +16,16 @@
             justify-content: center;
         }
 
-        .girasol {
+        .shark {
             width: 50px;
             height: 50px;
-            background-image: url('girasol.png'); /* Reemplaza 'girasol.png' con la ruta de tu imagen de girasol */
+            background-image: url('shark.png'); /* Reemplaza 'shark.png' con la ruta de tu imagen de shark */
             position: absolute;
-            animation: girasol-fall 5s linear infinite;
-            z-index: 1; /* Asegura que los girasoles estén detrás del modal */
+            animation: shark-fall 5s linear infinite;
+            z-index: 1; /* Asegura que los sharkes estén detrás del modal */
         }
 
-        @keyframes girasol-fall {
+        @keyframes shark-fall {
             0% {
                 transform: translateY(-100%);
                 opacity: 0;
@@ -48,7 +48,7 @@
             padding: 20px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
             text-align: center;
-            z-index: 2; /* Asegura que el modal esté por encima de los girasoles */
+            z-index: 2; /* Asegura que el modal esté por encima de los sharkes */
             opacity: 0; /* Inicialmente oculta el modal */
             transition: opacity 0.3s ease-in-out; /* Agrega una transición de opacidad */
         }
@@ -126,25 +126,25 @@
             setTimeout(showNextMessage, 300); // Cambia el mensaje después de una breve transición (0.3 segundos)
         }
 
-        function createGirasol() {
-            const girasol = document.createElement('div');
-            girasol.className = 'girasol';
-            girasol.innerHTML = `<img width="80" src="./images/shark.png" alt="">`
+        function createshark() {
+            const shark = document.createElement('div');
+            shark.className = 'shark';
+            shark.innerHTML = `<img width="80" src="./images/shark.png" alt="">`
             const x = Math.random() * window.innerWidth;
             const delay = Math.random() * 1.5; // Ajusta el valor para variar la velocidad de caída
-            girasol.style.left = `${x}px`;
-            girasol.style.animationDuration = `${5 + delay}s`; // Ajusta la duración de la animación
-            document.body.appendChild(girasol);
+            shark.style.left = `${x}px`;
+            shark.style.animationDuration = `${5 + delay}s`; // Ajusta la duración de la animación
+            document.body.appendChild(shark);
 
-            girasol.addEventListener('animationiteration', () => {
-                // Elimina el girasol cuando cae al suelo
-                document.body.removeChild(girasol);
-                createGirasol(); // Crea otro girasol después de que caiga uno
+            shark.addEventListener('animationiteration', () => {
+                // Elimina el shark cuando cae al suelo
+                document.body.removeChild(shark);
+                createshark(); // Crea otro shark después de que caiga uno
             });
         }
 
         for (let i = 0; i < 50; i++) {
-            setTimeout(createGirasol, Math.random() * 5000); // Agrega girasoles con un retraso aleatorio
+            setTimeout(createshark, Math.random() * 5000); // Agrega sharkes con un retraso aleatorio
         }
 
         showNextMessage(); // Mostrar el primer mensaje al cargar la página

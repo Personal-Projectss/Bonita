@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ella es como los aviones</title>
+    <style>
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      .sky {
+        background-color: #87ceeb; /* Light blue */
+        height: 100%;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .cloud {
+        width: 200px; /* Reducir el tamaño de las nubes */
+        height: 100px; /* Reducir el tamaño de las nubes */
+        position: absolute;
+        animation: cloudMove linear infinite;
+      }
+
+      .cloud img {
+        width: 100%;
+        height: 100%;
+      }
+
+      .cloud:nth-child(1) {
+        animation-duration: 10s; /* Primera nube se mueve más lentamente */
+        left: 10%;
+        top: 20%;
+      }
+
+      .cloud:nth-child(2) {
+        animation-duration: 5s; /* Segunda nube se mueve más rápido */
+        left: 40%;
+        top: 40%;
+      }
+
+      .cloud:nth-child(3) {
+        animation-duration: 8s; /* Tercera nube se mueve a velocidad media */
+        left: 70%;
+        top: 60%;
+      }
+
+      .cloud:nth-child(4) {
+        animation-duration: 12s; /* Sexta nube se mueve más lentamente */
+        left: 30%;
+        top: 80%;
+      }
+
+      .cloud:nth-child(5) {
+        animation-duration: 7s; /* Septima nube se mueve a velocidad media */
+        left: 60%;
+        top: 10%;
+      }
+
+      .airplane {
+        width: 200px; /* Tamaño del avión */
+        position: absolute;
+        top: 40%; /* Subir el avión un poco más arriba */
+        left: -200px; /* Mover el avión fuera de la pantalla inicialmente */
+        animation: airplaneMove 5s forwards ease-out; /* Animación de movimiento del avión */
+        animation-delay: 3s; /* Retrasar el inicio de la animación del avión */
+      }
+
+      .airplane img {
+        width: 100%;
+        height: 100%;
+        transform: rotate(22deg);
+      }
+
+      #modal {
+        display: none;
+        position: absolute;
+        top: 35%; /* Ajustar la posición vertical del modal */
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: rgba(
+          0,
+          0,
+          0,
+          0.8
+        ); /* Hacer el fondo del modal más oscuro */
+        padding: 20px;
+        border-radius: 10px;
+        color: white;
+        text-align: center;
+        transition: opacity 0.5s; /* Agregar una transición de opacidad */
+      }
+
+      #modal button {
+        margin-top: 20px;
+        padding: 10px 20px;
+        background-color: #8b61ff;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        cursor: pointer;
+        transition: background-color 0.3s; /* Agregar una transición de color de fondo */
+      }
+
+      #modal button:hover {
+        background-color: #8b61ff; /* Cambiar el color de fondo al pasar el ratón */
+      }
+
+      #message {
+        transition: opacity 0.5s; /* Agregar una transición de opacidad */
+      }
+
+      @keyframes cloudMove {
+        0% {
+          transform: translateX(
+            -200%
+          ); /* Ajustar el valor de translateX para evitar desbordamiento */
+        }
+        100% {
+          transform: translateX(
+            200%
+          ); /* Ajustar el valor de translateX para evitar desbordamiento */
+        }
+      }
+
+      @keyframes airplaneMove {
+        0% {
+          left: -200px; /* Mover el avión fuera de la pantalla */
+        }
+        100% {
+          left: 50%; /* Mover el avión al centro de la pantalla */
+          transform: translateX(-50%);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="sky">
+      <div class="cloud"><img src="images/cloud.svg" alt="Nube" /></div>
+      <div class="cloud"><img src="images/cloud.svg" alt="Nube" /></div>
+      <div class="cloud"><img src="images/cloud.svg" alt="Nube" /></div>
+      <div class="cloud"><img src="images/cloud.svg" alt="Nube" /></div>
+      <div class="cloud"><img src="images/cloud.svg" alt="Nube" /></div>
+      <div class="airplane" id="airplane">
+        <img src="images/plane.svg" alt="Avión" />
+      </div>
+    </div>
+
+    <div id="modal">
+      <div id="message">Bienvenido a bordo bonita ❤️‍🩹</div>
+      <audio style="display: none" id="audio" controls style="margin-top: 20px">
+        <source src="./images/Paulo Londra-Ella.mp3" type="audio/mpeg" />
+        Tu navegador no soporta la etiqueta de audio.
+      </audio>
+      <button id="nextButton">Siguiente</button>
+    </div>
+
+    <script>
+      window.onload = function () {
+        let audio = document.getElementById("audio");
+        let airplane = document.getElementById("airplane");
+        let modal = document.getElementById("modal");
+        let message = document.getElementById("message");
+        let nextButton = document.getElementById("nextButton");
+        let messages = [
+          "",
+          "Bienvenida al Boeing 447-01 😌💗",
+          "SIIIIIIII!!!! te hice un avión",
+          "Todas aquellas cosas que te gustan, las recuerdo",
+          "Desde las más pequeñitas como la Good Girl de Carolina Herrera jajaja",
+          "Hasta las más grandes, como aquellas con las que tú sueñas",
+          "Anteriormente, las personas consideraban que volar era un concepto mágico",
+          "El hecho de poder elevarse en el cielo y desafiar la gravedad, era algo irreal",
+          "La sola idea de poder recorrer el mundo a través de los cielos, parecía magia",
+          "Sin embargo, con los hechos se pudo demostrar que este sueño, que dicha magia podría ser real",
+          "Algo que a día de hoy es accesible para las personas y nos permite recorrer grandes distancias en poco tiempo",
+          "Nos enseñaron que por más mágico e irreal que un concepto sea, este con esfuerzo y dedicación puede hacerse realidad",
+          "Y podría decirse que algo similar me pasa contigo, en ocasiones una persona como tú, me parecía magia",
+          "Y aunque suene algo deprimente jajajaja, me parecía así",
+          "Hasta que me dieron una cachetada y me demostraron que existes, poco a poco siendo simplemente tú, lograste que yo",
+          "Creyera que esa magia existe, que esa persona existe",
+          "Porque aunque no lo creas de muchas formas, solo siendo tú he dicho",
+          "Me encanta esta mujer, a punto de que no puedo creer que la tengo en frente mío y de que me mira a los ojos como yo la veo a ella",
+          "Una persona así, que para mí vale mucho y que hace que me nazcan cosas como estas, que cuando está contenta me saca una sonrisa",
+          "Y que cuando ella triste yo quiero remediarla y que me hace pensar que",
+          "Ella es como los aviones, llena de magia, capaz de sorprenderme con aquello que puedes hacer, capaz de inspirar a romper los límites",
+          "Que me invita a soñar a que no es imposible que exista y a que es capaz de asustarme también jajajaja",
+          "Tantas cosas, solo siendo tú.",
+          "No creas que aún así no vas a tener tu avioncito de peluche, porque también lo recuerdo jajajaja",
+          "Y prometo que cuando pase también será una sorpresa",
+          "Por ahora ... disfrutemos el viaje mi bonita 😊💗🌻",
+        ];
+
+        let index = 0;
+
+        airplane.addEventListener("animationend", function () {
+          modal.style.display = "block";
+        });
+
+        nextButton.addEventListener("click", function () {
+          index = (index + 1) % messages.length;
+          console.log(index)
+          message.style.opacity = 0; // Ocultar el mensaje actual
+          setTimeout(function () {
+            message.textContent = messages[index]; // Cambiar el mensaje
+            message.style.opacity = 1; // Mostrar el nuevo mensaje con fade
+
+            if (index === 0) {
+              audio.style['display'] = "block";
+              nextButton.style['display'] = "none";
+            }
+          }, 500); // Retrasar el cambio del mensaje para que la transición de fade tenga efecto
+        });
+      };
+    </script>
+  </body>
+</html>
