@@ -104,17 +104,21 @@
     index += 1;
     return index % 2 === 0 && index <= 14 ? { type: 'video', src: `./img/${index}${index === 4 || index === 12 || index === 14 ? '.MP4' : '.MOV'}` } : { type: 'image', src: `./img/${index}.jpg` };
   }
-
   function getDescription(index) {
     const descriptions = [
       'No fue nuestra primer aventura, pero si nuestra primera salida sintiendonos conectados, aunque no sea tu foto favorita, yo la atesoro mucho 💘!',
       'Por que a veces, no se como 🤣, conviertes las situaciones mas inesperadas en momentos unicos, si me preguntaras por que te quiero tanto? podria decir que es por tu actitud, solo con reir cambiars todo 💘💘💘💘',
-      'Delicious food!',
-      'Exploring new places',
-      'Cute puppy!',
+      'Creeme!!, en un dia que yo me sienta mal, solo contagiame con tu sonrisa 💘, por que es lo mejor para una lavada jajajaj 💘💘💘',
+      'Aunque suene a parla, la sinergia que hay cuando los 2 estamos en la moto, es unica!, creeme que en verdad no habia sentido esa confianza con nadie y te aseguro, que siempre que este conmigo, te voy a cuidar 💘💘',
+      'Este es uno de los recuerdos mas preciados que tengo, finalemente fui feliz, no me preguntes como jajaja, solo fue asi 💘',
+      'Aunque pensandolo bien, puede ser en la forma en que me miras, por que yo en esa mirada me perderia mas de 1000 veces 💘💘',
+      'Throwback to a great trip',
+      'Throwback to a great trip',
+      'Throwback to a great trip',
+      'Throwback to a great trip',
       'Throwback to a great trip'
     ];
-    console.log(index)
+    console.log(descriptions)
     return descriptions[index - 1];
   }
 
