@@ -1,31 +1,78 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="es">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Quieres ser mi bonita?</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-  </head>
-  <style>
-    body {
-        margin: 0;
-        overflow: hidden;
-        background-color: #87CEEB; /* Color de fondo del cielo */
-        font-family: Arial, Helvetica, sans-serif;
-    }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>¿Quieres ser mi novia?</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Custom CSS -->
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #e7aaff;
+      }
+      .container {
+        text-align: center;
+      }
+      .botonNo {
+        position: absolute;
+        margin-top: 20px;
+      }
+
+      .botonSi {
+        margin-top: 20px;
+      }
     </style>
-  <body class="vh-100 d-flex justify-content-center align-items-center flex-column">
-
-    <div class="container-fluid d-flex flex-column justify-content-center align-items-center">
-        <div class="w-75 p-4 m-0 bg-white d-flex justify-content-center">
-          <img class="shadow img-fluid" src="./images/b&S.jpg" alt="">
-        </div>
-        <div class="bg-white w-75 m-0 pb-4 d-flex justify-content-center">
-          ¿ Quieres er mi bonita 🦈💗 ?
-        </div>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="text-white">¿Quieres ser mi novia?</h1>
+      <button id="botonNo" class="btn btn-danger botonNo" style="left: 139px">
+        No
+      </button>
+      <a id="botonSi" class="btn btn-success botonSi">Sí</a>
     </div>
-    
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <!-- Bootstrap JS y jQuery (necesario para Bootstrap) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+      // Función que se ejecuta cuando se hace clic en el botón "No"
+
+      function botonNoClicado() {
+        let botonNo = document.getElementById("botonNo");
+        let top = Math.floor(
+          Math.random() * (window.innerHeight - botonNo.clientHeight)
+        );
+        let left = Math.floor(
+          Math.random() * (window.innerWidth - botonNo.clientWidth)
+        );
+        botonNo.style.top = top + "px";
+        botonNo.style.left = left + "px";
+      }
+
+      // Agregar un event listener al botón "No"
+      document
+        .getElementById("botonNo")
+        .addEventListener("click", botonNoClicado);
+
+      // Función para mostrar un mensaje cuando se hace clic en el botón "Sí"
+      document.getElementById("botonSi").addEventListener("click", function () {
+        alert(
+          "¡Felicidades! 🎉 ¡Eres mi novia ahora! 😊, en este momento tu amor será notificado via whatsapp y via server"
+        );
+        window.location.href = `https://wa.me/?text=%C2%A1S%C3%AD,%20me%20encantar%C3%ADa%20ser%20tu%20novia!%20Estoy%20emocionada%20por%20comenzar%20esta%20nueva%20etapa%20juntos%20y%20construir%20preciosos%20recuerdos%20a%20tu%20lado.%20%F0%9F%92%96%E2%9C%A8%20-%20este%20mensaje%20lo%20puedes%20editar%20o%20a%C3%B1adirle%20m%C3%A1s%20cositas%20mi%20amor%20%F0%9F%98%8A
+`;
+      });
+    </script>
   </body>
 </html>
