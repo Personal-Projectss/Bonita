@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      body {
+        margin: 0;
+        overflow: hidden;
+        background-color: #f7b3ff; /* Color de fondo del cielo */
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+      .btn-container {
+        display: flex;
+        justify-content: center;
+      }
+
+      .shark {
+        width: 50px;
+        height: 50px;
+        background-image: url("shark.png"); /* Reemplaza 'shark.png' con la ruta de tu imagen de shark */
+        position: absolute;
+        animation: shark-fall 5s linear infinite;
+        z-index: 1; /* Asegura que los sharkes estén detrás del modal */
+      }
+
+      @keyframes shark-fall {
+        0% {
+          transform: translateY(-100%);
+          opacity: 0;
+        }
+        100% {
+          transform: translateY(100vh);
+          opacity: 1;
+        }
+      }
+
+      /* Estilos para el modal */
+      .modal {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: white;
+        border-radius: 20px;
+        width: 80%;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        text-align: center;
+        z-index: 2; /* Asegura que el modal esté por encima de los sharkes */
+        opacity: 0; /* Inicialmente oculta el modal */
+        transition: opacity 0.3s ease-in-out; /* Agrega una transición de opacidad */
+      }
+
+      .txt-msg {
+        font-weight: bold;
+        color: rgb(172, 110, 230);
+      }
+
+      /* Estilos para el botón "Siguiente" */
+      .next-button {
+        display: block;
+        margin-top: 20px;
+        cursor: pointer;
+        background-color: #f7b3ff;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 20px;
+      }
+
+      /* Estilos para mostrar el modal */
+      .modal.show {
+        opacity: 1; /* Muestra el modal con una transición de opacidad */
+      }
+    </style>
+    <title>Osito mielerito</title>
+  </head>
+  <body>
+    <div class="modal" id="messageModal">
+      <p id="messageText" class="txt-msg">Mensaje aquí</p>
+      <div class="btn-container">
+        <button class="next-button" onclick="nextMessage()">
+          Siguiente 💗
+        </button>
+      </div>
+    </div>
+
+    <script>
+      const messages = 
+        [
+          "Hola querida mami 😊",
+          "El día de hoy te agradezco por todas esas risas,",
+          "esas aventuras,",
+          "esos chismes,",
+          "esas cogidas de mano que me dan fuerza todos los días",
+          "le pido a dios que me permita pasar más aventuras y más crecimiento de las dos",
+          "Gracias por ser esa mujer luchadora",
+          "esa mujer hermosa",
+          "esa mujer guerrera que me inspira todos los días",
+          "Que siempre anda con una sonrisa y no detiene nada en cumplir los sueños",
+          "Te amo muchísimo mi mamita adorada",
+          "Eres lo mejor de mi vida",
+          "Y espero por mucho tiempo tenerte a mi lado",
+          "Te amo mi reina hermosa 💗"
+        ]
+
+      let currentIndex = 0;
+
+      function showNextMessage() {
+        const modal = document.getElementById("messageModal");
+        const messageText = document.getElementById("messageText");
+
+        if (currentIndex < messages.length) {
+          messageText.textContent = messages[currentIndex];
+          modal.classList.add("show"); // Muestra el modal con la clase "show"
+          currentIndex++;
+        } else {
+          modal.style.display = "none";
+          window.location.replace("./index.html");
+        }
+      }
+
+      function nextMessage() {
+        const modal = document.getElementById("messageModal");
+        modal.classList.remove("show"); // Oculta el modal con la clase "show"
+        setTimeout(showNextMessage, 300); // Cambia el mensaje después de una breve transición (0.3 segundos)
+      }
+
+      function createshark() {
+        const shark = document.createElement("div");
+        shark.className = "shark";
+        shark.innerHTML = `<img width="200" src="./images/osito.png" alt="">`;
+        const x = Math.random() * window.innerWidth;
+        const delay = Math.random() * 1.5; // Ajusta el valor para variar la velocidad de caída
+        shark.style.left = `${x}px`;
+        shark.style.animationDuration = `${5 + delay}s`; // Ajusta la duración de la animación
+        document.body.appendChild(shark);
+
+        shark.addEventListener("animationiteration", () => {
+          // Elimina el shark cuando cae al suelo
+          document.body.removeChild(shark);
+          createshark(); // Crea otro shark después de que caiga uno
+        });
+      }
+
+      for (let i = 0; i < 50; i++) {
+        setTimeout(createshark, Math.random() * 5000); // Agrega sharkes con un retraso aleatorio
+      }
+
+      showNextMessage(); // Mostrar el primer mensaje al cargar la página
+    </script>
+  </body>
+</html>
